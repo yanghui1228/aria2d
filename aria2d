@@ -56,13 +56,16 @@ main()
     #local tab="--tab"
     for file in *.torrent; do
         if [ "$file" == "*.torrent" ]; then
-            echo "No torrent file found!"
+            echo "No torrent file found"
+            exit 1
         else
+            file=$download_dir/$file
             echo "Trying to download: $file"
             open -a Terminal
             osascript   -e "tell application \"Terminal\"" \
                         -e "tell application \"System Events\" to keystroke \"t\" using {command down}" \
-                        -e "do script \"aria2c $download_dir/$file\" in front window" \
+                        -e "set FilePath to quoted form of \"$file\" as text" \
+                        -e "do script \"aria2c \" & FilePath in front window" \
                         -e "end tell"
                         > /dev/null
             echo "$file download triggered!"
