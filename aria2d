@@ -12,19 +12,7 @@ update_tracker ()
     local aria2_conf="$HOME/.aria2/aria2.conf"
     echo "Updating tracker list, please wait..."
     local list=`wget -qO- https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt|awk NF|sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/,/g'`
-    #local trackers_all="$HOME/.aria2/trackers_all.txt"
-    #wget -O $trackers_all https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt
-    #local trackers_out="$HOME/.aria2/trackers_out.txt"
-    #awk NF $trackers_all > $trackers_out
-    #sed -i ""  "s/\n/,/g"  $trackers_out
-    #local trackers_out2="$HOME/.aria2/trackers_out2.txt"
-    #cat $trackers_out|awk '{{printf"%s, ",$0}}'
-    #sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/,/g' $trackers_out
-    #exit 1
-    #echo $list
     if [ -z "`grep "bt-tracker" $aria2_conf`" ]; then
-        #sed -i "" '1 a \
-        #bt-tracker='${list} "$aria2_conf"
         echo -e "\nbt-tracker=$list" >>$aria2_conf
         echo bt-tracker added!
     else
@@ -53,7 +41,6 @@ main()
     local download_dir="$HOME/Downloads"
 	cd "$download_dir"
     echo "Getting torrent from: $download_dir"
-    #local tab="--tab"
     for file in *.torrent; do
         if [ "$file" == "*.torrent" ]; then
             echo "No torrent file found"
@@ -69,7 +56,6 @@ main()
                         -e "end tell"
                         > /dev/null
             echo "$file download triggered!"
-            #mv "$download_dir/$file" "$HOME/.Trash"
         fi
     done
     
