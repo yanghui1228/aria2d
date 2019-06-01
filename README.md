@@ -4,7 +4,11 @@
     aria2d is a CLI shell script to batch trigger the torrent downloads in one shot via aria2c.
     This utility is only tested on MacOS Mojave so it may not work in the other platform.
     it will update your bt-trackers from server if your conf file is in ~/.aria2/aria2.conf
-  
+    
+## Features:
+    Download multiple torrent files in one shot.
+    auto update BT-tracker. 
+
 ## Dependencies:
     This project is dependent on packages: `aria2c wget`.
     Use 'brew list' to check your installed packages.
